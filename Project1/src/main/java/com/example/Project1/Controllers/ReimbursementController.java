@@ -14,6 +14,7 @@ public class ReimbursementController {
     @Autowired
     ReimbursementService reimbursementService;
 
+
     @PostMapping("/{name},{amount},{description}")
     public void createReimbursement(@PathVariable String name,@PathVariable double amount,@PathVariable String description){
         reimbursementService.createReimbursement(name,amount,description);
@@ -39,9 +40,9 @@ public class ReimbursementController {
         reimbursementService.updateReimbursement("Denied",id);
     }
 
-    @PutMapping("/reassign/{id}")
-    public void reassignReimbursement(@PathVariable int id){
-        reimbursementService.updateReimbursement("Reassigned",id);
+    @PutMapping("/reassign/{user_id},{id}")
+    public void reassignReimbursement(@PathVariable int user_id, @PathVariable int id){
+        reimbursementService.reassignUser(user_id,id);
     }
 
 }

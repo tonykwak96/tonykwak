@@ -45,6 +45,11 @@ public class ReimbursementService {
         return true;
     }
 
+    public boolean reassignUser(int user_id, int id){
+        reimbursementRepo.updateUserById(user_id,id);
+        return true;
+    }
+
     public List<Reimbursement> getAllReimbursementByName(int id){
         return reimbursementRepo.findAllById(id);
     }

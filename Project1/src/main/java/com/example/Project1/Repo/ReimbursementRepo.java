@@ -1,6 +1,7 @@
 package com.example.Project1.Repo;
 
 import com.example.Project1.Models.Reimbursement;
+import com.example.Project1.Models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +23,9 @@ public interface ReimbursementRepo extends JpaRepository<Reimbursement, Integer>
     @Modifying
     @Query(value ="update reimbursements set status = ?1 where id = ?2", nativeQuery = true)
     void updateStatusById(String status, int id);
+
+    @Transactional
+    @Modifying
+    @Query(value ="update reimbursements set user_id = ?1 where id = ?2", nativeQuery = true)
+    void updateUserById(int user_id, int id);
 }
