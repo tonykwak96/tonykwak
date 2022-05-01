@@ -10,12 +10,14 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
+@Builder
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
     @Id
+    @Column(name="id", columnDefinition = "AUTO_INCREMENT")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -28,4 +30,6 @@ public class User {
     @Column
     private String role;
 
+    @Column(name = "email", nullable = false)
+    private String email;
 }

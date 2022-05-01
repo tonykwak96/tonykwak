@@ -2,7 +2,7 @@ package com.example.Project1.Controllers;
 
 
 import com.example.Project1.Models.User;
-import com.example.Project1.Repo.UserRepo;
+import com.example.Project1.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,29 +10,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    UserRepo users;
+    UserService userService;
 
-    @PostMapping("/user")
+    @PostMapping()
     public void createUser(@RequestBody User user){
-        users.save(user);
+        userService.saveUser(user);
     }
 
-    @GetMapping("/user/name/{name}")
+    @GetMapping("/name/{name}")
     public User viewUserByName(@PathVariable String name){
-        return users.findByName(name);
+        return userService.viewUserByName(name);
     }
 
-    @GetMapping("/user/id/{id}")
-    public Optional<User> UserviewUserById(@PathVariable int id){
-        return users.findById(id);
+    @GetMapping("/id/{id}")
+    public Optional<User> viewUserById(@PathVariable int id){
+        return userService.viewUserById(id);
     }
 
-    @GetMapping("/users")
+    @GetMapping("/all")
     public List<User> viewAllUsers(){
-        return users.findAll();
+        return userService.viewAllUsers();
     }
 }
